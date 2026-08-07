@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Launch Hesion from a source checkout (used by install.sh / npm start).
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT"
+
+find_electron() {
+  if [[ -x "$ROOT/node_modules/.bin/electron" ]]; then
+    echo "$ROOT/node_modules/.bin/electron"
+    return
+  fi
+  if command -v electron >/dev/null 2>&1; then
+    command -v electron
+    return
+  fi
+  return 1
+}
+
+if [[ ! -d node_modules ]]; then
+  echo "hesion: dependencies missing — run: npm install" >&2
+  exit 1
+fi
+
+if [[ ! -f dist-electron/main.cjs || ! -d dist ]]; then
+  echo "hesion: building…" >&2
+  npm run build
+fi
+
+ELECTRON_BIN="$(find_electron)" || {
+  echo "hesion: electron not found." >&2
+  echo "  Install a system package (e.g. pacman -S electron) or:" >&2
+  echo "  npm install -D electron" >&2
+  exit 1
+}
+
+# Cursor/VS Code sets ELECTRON_RUN_AS_NODE=1 which breaks Electron apps
+exec env -u ELECTRON_RUN_AS_NODE "$ELECTRON_BIN" "$ROOT" "$@"

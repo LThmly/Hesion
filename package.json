@@ -1,0 +1,44 @@
+{
+  "name": "hesion",
+  "version": "0.1.0",
+  "description": "Hyprland LLM companion — chat, screen context, voice, compact mode",
+  "main": "dist-electron/main.cjs",
+  "author": "Logan",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k -n vite,electron -c blue,magenta \"vite\" \"npm run dev:electron\"",
+    "dev:electron": "wait-on http://127.0.0.1:5173 && npm run build:electron && env -u ELECTRON_RUN_AS_NODE electron . --dev",
+    "build:electron": "node scripts/build-electron.mjs",
+    "build": "vite build && npm run build:electron",
+    "start": "npm run build && env -u ELECTRON_RUN_AS_NODE electron .",
+    "install:desktop": "bash scripts/install.sh",
+    "uninstall:desktop": "bash scripts/uninstall.sh",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.electron.json"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "^5.3.0",
+    "highlight.js": "^11.11.1",
+    "katex": "^0.18.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-markdown": "^10.1.0",
+    "rehype-highlight": "^7.0.2",
+    "rehype-katex": "^7.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/katex": "^0.16.8",
+    "@types/node": "^25.2.3",
+    "@types/react": "^19.2.10",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.4",
+    "concurrently": "^9.2.1",
+    "esbuild": "^0.28.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "wait-on": "^9.0.3"
+  }
+}

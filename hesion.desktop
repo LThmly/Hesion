@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Hesion
+Comment=Hyprland LLM companion — chat, screen context, voice, compact mode
+# Prefer installing via ./scripts/install.sh so Exec/Icon resolve for your machine.
+# After install, the live entry lives in ~/.local/share/applications/hesion.desktop
+Exec=hesion
+Icon=hesion
+Terminal=false
+Type=Application
+Categories=Utility;Network;Office;
+Keywords=AI;LLM;chat;hesion;
+StartupWMClass=hesion
