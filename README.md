@@ -1,8 +1,10 @@
 # Hesion
 
-Desktop LLM companion for Linux (Hyprland-friendly): chat, screen context, voice input, study tools, and a compact HUD mode.
+Desktop LLM interface for Linux (Hyprland-friendly): chat, screen context, voice input, study tools, and a compact HUD mode.
 
 Built with Electron, Vite, React, and TypeScript. Cloud providers only (OpenAI, Anthropic, OpenRouter, Gemini) — API keys are entered in Settings and stored locally under your XDG config directory.
+
+![Hesion demo](assets/screenshots/demo.gif)
 
 ## Features
 
@@ -13,6 +15,26 @@ Built with Electron, Vite, React, and TypeScript. Cloud providers only (OpenAI, 
 - Study mode: auto flashcards + quiz generation
 - Sessions sidebar, export to Markdown
 - Light / dark themes
+
+## Screenshots
+
+### Chat
+
+![Chat dark](assets/screenshots/chat-dark.jpg)
+
+![Chat light](assets/screenshots/chat-light.jpg)
+
+### Compact mode
+
+![Compact dark](assets/screenshots/compact-dark.jpg)
+
+![Compact light](assets/screenshots/compact-light.jpg)
+
+### Study
+
+![Flashcards](assets/screenshots/study-flashcards.jpg)
+
+![Quiz](assets/screenshots/study-quiz.jpg)
 
 ## Requirements
 
@@ -107,7 +129,7 @@ See `hyprland-hesion.conf` for notes. Compact mode uses `hyprctl` for relative t
 ## Project layout
 
 ```text
-assets/           # logos / empty-state art
+assets/           # logos, empty-state art, README screenshots
 electron/         # main process, IPC, providers, Hyprland helpers
 scripts/          # build, launcher, install/uninstall
 shared/           # types + shared prompts shared by main + renderer
